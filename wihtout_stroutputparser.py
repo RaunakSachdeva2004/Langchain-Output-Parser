@@ -1,12 +1,17 @@
-from langchain_huggingface import HuggingFaceEndpoint
+from langchain_huggingface import HuggingFaceEndpoint, ChatHuggingFace
 from langchain_core.prompts import PromptTemplate
+from dotenv import load_dotenv
 
-# 1. Use a valid text-generation model
-# (Zephyr or Mistral are great for this)
+load_dotenv()
+
+sec_key =""
+
 llm = HuggingFaceEndpoint(
-    repo_id="HuggingFaceH4/zephyr-7b-beta",
-    task="text-generation"
+    repo_id = "mistralai/Mistral-7B-Instruct-v0.2",
+    task = "text-generation",
+    huggingfacehub_api_token=sec_key
 )
+
 
 # NOTE: We removed 'model = ChatHuggingFace(llm=llm)'
 # We will just use 'llm' directly.
